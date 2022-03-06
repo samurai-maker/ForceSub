@@ -39,20 +39,20 @@ try:
     on_join = config("ON_JOIN", cast=bool)
     on_new_msg = config("ON_NEW_MSG", cast=bool)
 except:
-    print("Environment vars are missing! Kindly recheck.")
-    print("Bot is quiting...")
+    print("ഏതോ ഒന്നിനെ  കളഞ്ഞു പോയെ 😓.")
+    print("ഞാൻ പോണേ...🏃‍♂️")
     exit()
 
 if (apiid != None and apihash!= None and bottoken != None):
     try:
         BotzHub = TelegramClient('BotzHub', apiid, apihash).start(bot_token=bottoken)
     except Exception as e:
-        print(f"ERROR!\n{str(e)}")
-        print("Bot is quiting...")
+        print(f"എന്തോ എവിടെയോ തകരാർ!\n{str(e)}")
+        print("ഞാൻ പോണേ...🏃‍♂️")
         exit()
 else:
-    print("Environment vars are missing! Kindly recheck.")
-    print("Bot is quiting...")
+    print("ഏതോ ഒന്നിനെ  കളഞ്ഞു പോയെ 😓.")
+    print("ഞാൻ പോണേ...🏃‍♂️")
     exit()
 
 channel = xchannel.replace("@", "")
@@ -96,7 +96,7 @@ async def _(event):
             butt = [Button.url("Channel", url=f"https://t.me/{channel}")]
         else:
             msg = welcome_not_joined.format(mention=mention, title=title, fullname=fullname, username=username, name=name, last=last, channel=f"@{channel}")
-            butt = [Button.url("Channel", url=f"https://t.me/{channel}"), Button.inline("UnMute Me", data=f"unmute_{user.id}")]
+            butt = [Button.url("Channel", url=f"https://t.me/{channel}"), Button.inline("അഴിച്ചു വിട് 🐣", data=f"unmute_{user.id}")]
             await BotzHub.edit_permissions(event.chat.id, user.id, until_date=None, send_messages=False)
         
         await event.reply(msg, buttons=butt)
@@ -119,7 +119,7 @@ async def mute_on_msg(event):
         except Exception as e:
             print(str(e))
             return
-        await event.reply(f"Hey {nm}, seems like you haven't joined our channel. Please join @{channel} and then press the button below to unmute yourself!", buttons=[[Button.url("Channel", url=f"https://t.me/{channel}")], [Button.inline("UnMute Me", data=f"unmute_{event.sender_id}")]])
+        await event.reply(f"പൂയ് {nm}, നീ നമ്മുടെ ചാനൽ സബ്സ്ക്രൈബ് ചെയ്തട്ടില്ല 🔕. അതില് ജോയിൻ അയേച്ചും വാ 🔔 , എന്നിട്ട് താഴെ അഴിച്ചു വിട് ബട്ടൺ അമർത്തി നോക്ക്.. ഇന്നാ നമ്മുടെ ചാനൽ ലിങ്ക് 🔗 @{channel} ", buttons=[[Button.url("Channel", url=f"https://t.me/{channel}")], [Button.inline("അഴിച്ചു വിട് 🐣", data=f"unmute_{event.sender_id}")]])
 
 
 @BotzHub.on(events.callbackquery.CallbackQuery(data=re.compile(b"unmute_(.*)")))
@@ -129,7 +129,7 @@ async def _(event):
         x = await get_user_join(uid)
         nm = (await BotzHub(GetFullUserRequest(uid))).user.first_name
         if x is False:
-            await event.answer(f"You haven't joined @{channel} yet!", cache_time=0, alert=True)
+            await event.answer(f"എടാ നീ ചാനലിൽ ചേർന്നില്ലെടാ! 🥺 @{channel} ", cache_time=0, alert=True)
         elif x is True:
             try:
                 await BotzHub.edit_permissions(event.chat.id, uid, until_date=None, send_messages=True)
@@ -140,12 +140,12 @@ async def _(event):
             butt = [Button.url("Channel", url=f"https://t.me/{channel}")]
             await event.edit(msg, buttons=butt)
     else:
-        await event.answer("You are an old member and can speak freely! This isn't for you!", cache_time=0, alert=True)
+        await event.answer("എടാ നീ  പറഞ്ഞോ നീ നുമ്മടെ സബ്സ്ക്രൈബ്ർ അല്ലെ 🌚", cache_time=0, alert=True)
 
 @BotzHub.on(events.NewMessage(pattern="/start"))
 async def strt(event):
-    await event.reply(f"Hi. I'm a force subscribe bot made specially for @{channel}!\n\nCheckout @BotzHub :)", buttons=[Button.url("Channel", url=f"https://t.me/{channel}"), Button.url("Repository", url="https://github.com/xditya/ForceSub")])
+    await event.reply(f"ഞാനൊരു പാവം സബ്സ്ക്രൈബ്ർ ബോട്ട്, എന്നെ ആരോ കൊണ്ടു വന്നു ഇതിൽ ഇട്ടതാ.. @{channel}!\n\nആശാൻ ആശാൻ 🌚 @slogan_98 :)", buttons=[Button.url("Channel", url=f"https://t.me/{channel}"), Button.url("Repository", url="https://www.google.com/search?q=ente+kayyil+onnula")])
 
     
-print("ForceSub Bot has started.\nDo visit @BotzHub!")
+print("എന്റെ ഹൃദയം നിനക്കായ്‌ തുടിക്കുന്നു.\nആശാനെ എവിടേലും കണ്ടാൽ പറയണേ @slogan_98!")
 BotzHub.run_until_disconnected()
