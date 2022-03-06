@@ -21,13 +21,9 @@ Note: `WELCOME_MSG` and `WELCOME_NOT_JOINED` can both be formatted using paramet
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 # Deploy locally
-- `git clone https://github.com/xditya/ForceSub`
+- `git clone https://github.com/samurai-maker/ForceSub`
 - `cd ForceSub`
 - `pip3 install -U -r requirements.txt`
 - `touch .env`,  `nano .env` and fill in the [vars](.env.sample), Ctrl+S, Ctrl+X
 - Run the bot, `python3 bot.py`
 
-# Credits
-- [Telethon](https://github.com/LonamiWebs/Telethon)
-- [BotzHub](https://t.me/BotzHub)
-- [Me](https://xditya.me/tg)
